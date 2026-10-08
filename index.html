@@ -46,8 +46,16 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .slot{margin-bottom:22px}
 .time{font:500 13px var(--mono);margin:0 0 8px;display:flex;gap:10px;align-items:baseline;color:var(--ink)}
 .time small{color:var(--muted);font-weight:400}
-.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}
-.heads{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);padding-block:8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+/* Tracks are always side by side. Each time slot scrolls sideways when the screen is narrower than the columns; all slots scroll together. */
+:root{--colw:200px;--n:6}
+.scroll{overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-left:0;padding-bottom:6px}
+.sheet{min-width:calc(var(--n)*var(--colw) + (var(--n) - 1)*10px)}
+.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(var(--n),minmax(var(--colw),1fr))}
+.heads{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.cell,.heads>div{scroll-snap-align:start}
+.scrollhint{display:none;color:var(--muted);font-size:13px;margin:0}
+@media (max-width:1279px){.scrollhint{display:block}}
+@media (max-width:699px){:root{--colw:min(300px,80vw)}}
 .heads div{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;border-top:3px solid var(--c);padding-top:6px}
 .cell{display:flex;flex-direction:column;gap:10px;min-width:0}
 .cell[hidden]{display:none!important}
@@ -78,43 +86,8 @@ li:first-child{border-top:0;padding-top:0}
 .full .title{font-family:var(--serif);font-size:16px;font-weight:600}
 .minor{color:var(--muted);font-size:13px;padding-block:2px}
 .hl .cell-hint{display:none}
-.cell.none{display:none}
-/* Side-by-side columns: desktops, iPad and phones in landscape */
-@media (min-width:1100px),(min-width:800px) and (orientation:landscape){
-  .heads{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
-  .grid{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .tracklabel{display:none}
-  .cell.none{display:flex}
-  .empty{display:block;color:var(--muted);padding:6px 2px}
-}
-@media (min-width:800px) and (max-width:1099px) and (orientation:landscape){
-  body{font-size:13px}
-  .heads,.grid{gap:6px}
-  .heads div{font-size:10px;letter-spacing:.04em}
-  .card{padding:8px 8px 9px}
-  .sname{font-size:12.5px}
-  .tt{font-size:10.5px}
-  .who{font-size:11.5px}
-  .room{font-size:11px}
-}
-.mobhint{display:none;color:var(--muted);font-size:13px;margin:0}
-/* Portrait phones: one track at a time, full width, switched from a sticky tab bar */
-@media (max-width:699px) and (orientation:portrait){
-  body{font-size:15px}
-  .grid{grid-template-columns:minmax(0,1fr)}
-  .controls{display:contents}
-  .days{margin-bottom:10px}
-  .mobhint{display:block;margin-bottom:8px}
-  .chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:8px 16px;border-bottom:1px solid var(--line);margin-bottom:16px;scrollbar-width:none}
-  .chips::-webkit-scrollbar{display:none}
-  .chips button{flex:none;padding:9px 13px;font-size:14px}
-  .chips button[aria-pressed="false"]{opacity:1;text-decoration:none}
-  .chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-  .tracklabel{display:none}
-  .sname{font-size:16px}
-  .tt{font-size:12px}
-  .time small{display:none}
-}
+.tracklabel{display:none}
+.empty{display:block;color:var(--muted);padding:6px 2px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 <div class="wrap">
@@ -126,8 +99,8 @@ li:first-child{border-top:0;padding-top:0}
 </header>
 <div class="controls">
   <div class="row days" id="days" role="group" aria-label="Day"></div>
-  <p class="mobhint">Showing one track at a time. Tap a track to switch.</p>
   <div class="row chips" id="chips" role="group" aria-label="Tracks to show"></div>
+  <p class="scrollhint">Swipe sideways to see more tracks. Every time slot scrolls together.</p>
 </div>
 <main id="out"></main>
 </div>
@@ -350,9 +323,6 @@ const f=s=>{const [h,m]=s.split(':').map(Number);return (h%12||12)+':'+String(m)
 const rng=r=>{const [a,b]=r.split('-');const ap=+a.slice(0,2)>=12?'pm':'am',bp=+b.slice(0,2)>=12?'pm':'am';return f(a)+(ap!==bp?' '+ap:'')+'–'+f(b)+' '+bp};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let day='thu';const hidden=new Set();
-const isMob=()=>window.matchMedia('(max-width:699px) and (orientation:portrait)').matches;
-const isSix=()=>window.matchMedia('(min-width:1100px),(min-width:800px) and (orientation:landscape)').matches;
-let mobTrack='arts';try{const v=localStorage.getItem('track');if(v&&TR.some(t=>t[0]===v))mobTrack=v}catch(e){}
 const out=document.getElementById('out');
 const link=(id,txt)=>`<a class="slink" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
 function cell(k,label,list,ids){
@@ -362,34 +332,27 @@ function cell(k,label,list,ids){
 function render(){
   const d=D.find(x=>x.id===day);
   const heads=`<div class="heads">${TR.map(([k,l])=>`<div data-t="${k}" style="--c:var(--${k})">${l}</div>`).join('')}</div>`;
-  let first=true;
   out.innerHTML=d.rows.map(r=>{
     if(r.minor) return `<div class="slot"><p class="time">${rng(r.t)} <small>${esc(r.minor)}</small></p></div>`;
     if(r.full){const x=r.full;return `<div class="slot"><p class="time">${rng(r.t)}</p><div class="full ${x.kind}"><span class="tag">${esc(x.tag)}</span><span class="title">${x.id?link(x.id,x.title):esc(x.title)}</span><span class="who">${esc(x.who)}</span><span class="room">${esc(x.room)}</span></div></div>`}
-    const h=first?heads:'';first=false;
-    return `<div class="slot"><p class="time">${rng(r.t)} <small>Parallel sessions</small></p>${h}<div class="grid">${TR.map(([k,l])=>cell(k,l,r.cols[k],(r.ids||{})[k])).join('')}</div></div>`;
+    return `<div class="slot"><p class="time">${rng(r.t)} <small>Parallel sessions</small></p><div class="scroll"><div class="sheet">${heads}<div class="grid">${TR.map(([k,l])=>cell(k,l,r.cols[k],(r.ids||{})[k])).join('')}</div></div></div></div>`;
   }).join('');
   applyHidden();
 }
 function applyHidden(){
-  const mob=isMob();
-  out.querySelectorAll('[data-t]').forEach(e=>{e.hidden=mob?e.dataset.t!==mobTrack:hidden.has(e.dataset.t)});
-  out.querySelectorAll('.slot').forEach(sl=>{const g=sl.querySelector('.grid');if(!g){sl.hidden=false;return}const c=g.querySelector('.cell[data-t="'+mobTrack+'"]');sl.hidden=mob&&(!c||c.classList.contains('none'))});
-  document.querySelectorAll('#chips button').forEach(b=>b.setAttribute('aria-pressed',mob?b.dataset.k===mobTrack:!hidden.has(b.dataset.k)));
-  const vis=6-hidden.size;
-  document.querySelectorAll('.grid,.heads').forEach(e=>{e.style.gridTemplateColumns=isSix()&&vis>0&&vis<6?`repeat(${vis},minmax(0,1fr))`:''});
+  out.querySelectorAll('[data-t]').forEach(e=>{e.hidden=hidden.has(e.dataset.t)});
+  document.documentElement.style.setProperty('--n',Math.max(1,6-hidden.size));
 }
+let syncing=false;
+out.addEventListener('scroll',e=>{const s=e.target;if(syncing||!s.classList||!s.classList.contains('scroll'))return;syncing=true;const x=s.scrollLeft;out.querySelectorAll('.scroll').forEach(o=>{if(o!==s)o.scrollLeft=x});requestAnimationFrame(()=>{syncing=false})},true);
 function buildControls(){
   const dEl=document.getElementById('days');
   dEl.innerHTML=D.map(x=>`<button type="button" data-d="${x.id}" aria-pressed="${x.id===day}">${x.label}, ${x.date}</button>`).join('');
   dEl.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;dEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};
   const c=document.getElementById('chips');
   c.innerHTML=TR.map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="true" style="--c:var(--${k})">${l}</button>`).join('');
-  c.onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;
-    if(isMob()){mobTrack=k;try{localStorage.setItem('track',k)}catch(err){}applyHidden();b.scrollIntoView({inline:'center',block:'nearest'});const top=out.getBoundingClientRect().top;if(top<64)window.scrollTo(0,window.scrollY+top-64);return}
-    if(hidden.has(k))hidden.delete(k);else hidden.add(k);applyHidden()};
+  c.onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;if(hidden.has(k))hidden.delete(k);else hidden.add(k);b.setAttribute('aria-pressed',!hidden.has(k));applyHidden()};
 }
-window.addEventListener('resize',applyHidden);
 buildControls();render();
 </script>
 </body>
