@@ -4,103 +4,88 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Wisdom in the Age of AI conference (Calvin University, Oct 8-10, 2026): every parallel session and talk, with tracks side by side as columns.">
-<title>Wisdom in the Age of AI Schedule</title>
+<meta name="description" content="Wisdom in the Age of AI conference (Calvin University, Oct 8-10, 2026): every talk in a timetable with time slots down the left and tracks across.">
+<title>Wisdom in the Age of AI Timetable</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
-<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
 <style>
-/* Layout: one row per time slot; six track columns side by side (3 on tablet, 1 on phone). Talk titles listed under each session. */
 :root{
-  --bg:#f5f6f4; --surface:#ffffff; --ink:#1c2321; --muted:#5d6864; --line:#d9ddd9; --soft:#eceeeb;
+  --bg:#f5f6f4; --surface:#ffffff; --ink:#1c2321; --muted:#5d6864; --line:#d3d8d4; --soft:#eef0ed; --gap:#f0f2ef;
   --arts:#a8456b; --biz:#2f6b8f; --church:#6d4aa3; --edu:#b0701a; --health:#2f7d57; --stem:#4b5563;
-  --key:#1c2321; --keyink:#f5f6f4;
+  --key:#1c2321; --keyink:#f5f6f4; --lw:176px; --tw:78px;
   --serif:"Source Serif 4",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#2f3935; --soft:#262d2a;
+  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#34403b; --soft:#232a27; --gap:#191f1d;
   --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
   --key:#e8ece9; --keyink:#141917; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#2f3935; --soft:#262d2a;
+  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#34403b; --soft:#232a27; --gap:#191f1d;
   --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
   --key:#e8ece9; --keyink:#141917; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);padding-inline:16px;padding-block:24px 56px}
-.wrap{max-width:1500px;margin:0 auto}
-header{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:end;justify-content:space-between;margin-bottom:20px}
-h1{font:600 clamp(24px,3.4vw,36px)/1.1 var(--serif);margin:0;text-wrap:balance}
-.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
-.controls{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+body{background:var(--bg);color:var(--ink);font:13.5px/1.4 var(--sans);padding-inline:16px;padding-block:24px 56px}
+.wrap{max-width:1700px;margin:0 auto}
+h1{font:600 clamp(24px,3.2vw,34px)/1.1 var(--serif);margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0;max-width:68ch}
+.controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:18px 0}
 .row{display:flex;flex-wrap:wrap;gap:6px}
 button{font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
-button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.days button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hint{color:var(--muted);font-size:12.5px;margin:0}
 .chips button{display:inline-flex;align-items:center;gap:7px;padding:5px 10px}
 .chips button::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c)}
-.chips button[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
-.slot{margin-bottom:22px}
-.time{font:500 13px var(--mono);margin:0 0 8px;display:flex;gap:10px;align-items:baseline;color:var(--ink)}
-.time small{color:var(--muted);font-weight:400}
-/* Tracks are always side by side. Each time slot scrolls sideways when the screen is narrower than the columns; all slots scroll together. */
-:root{--colw:200px;--n:6}
-.scroll{overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-left:0;padding-bottom:6px}
-.sheet{min-width:calc(var(--n)*var(--colw) + (var(--n) - 1)*10px)}
-.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(var(--n),minmax(var(--colw),1fr))}
-.heads{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-.cell,.heads>div{scroll-snap-align:start}
-.scrollhint{display:none;color:var(--muted);font-size:13px;margin:0}
-@media (max-width:1279px){.scrollhint{display:block}}
-@media (max-width:699px){:root{--colw:min(300px,80vw)}}
-.heads div{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;border-top:3px solid var(--c);padding-top:6px}
-.cell{display:flex;flex-direction:column;gap:10px;min-width:0}
-.cell[hidden]{display:none!important}
-.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:6px;padding:11px 12px 12px;min-width:0}
-.tracklabel{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--c);margin:0 0 4px}
-.sname{font:600 14px/1.3 var(--serif);margin:0 0 2px;text-wrap:balance}
-a.slink{color:inherit;text-decoration:underline;text-decoration-color:var(--c,var(--muted));text-decoration-thickness:2px;text-underline-offset:3px}
-a.slink:hover{color:var(--c,var(--ink))}
-li a.slink{text-decoration-thickness:1px;text-decoration-color:var(--line)}
-li a.slink:hover{text-decoration-color:var(--c)}
-a.slink:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:2px}
-.full a.slink:hover{color:inherit;text-decoration-color:currentColor}
-.full.keynote a.slink,.full.keynote a.slink:hover{color:var(--keyink);text-decoration-color:currentColor}
-.full.keynote a.slink:hover{text-decoration-thickness:3px}
-.room{font-size:12px;color:var(--muted);margin:0 0 8px}
-ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-li{border-top:1px solid var(--soft);padding-top:8px;min-width:0}
-li:first-child{border-top:0;padding-top:0}
-.tt{font:400 11.5px var(--mono);color:var(--muted);display:block}
-.title{font-weight:500;overflow-wrap:anywhere}
-.who{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
-.note{color:var(--muted);font-style:italic;margin:0}
-.empty{display:none}
-.full{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
-.full.keynote{background:var(--key);color:var(--keyink);border-color:var(--key)}
-.full.keynote .who,.full.keynote .room{color:inherit;opacity:.8}
-.full .tag{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase}
-.full .title{font-family:var(--serif);font-size:16px;font-weight:600}
-.minor{color:var(--muted);font-size:13px;padding-block:2px}
-.hl .cell-hint{display:none}
-.tracklabel{display:none}
-.empty{display:block;color:var(--muted);padding:6px 2px}
+.chips button[aria-pressed="true"]{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.chips button[aria-pressed="false"]{opacity:.5;text-decoration:line-through}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;table-layout:fixed;width:100%;min-width:calc(var(--tw) + var(--ncol,8)*var(--lw))}
+col.t{width:var(--tw)}
+th,td{padding:0;vertical-align:top;text-align:left;font-weight:400}
+.time{position:sticky;left:0;z-index:2;background:var(--surface);width:var(--tw);font:500 11.5px var(--mono);color:var(--muted);padding:8px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--soft);white-space:nowrap}
+tr.blockhead th{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+tr.blockhead .in,tr.full .in{position:sticky;left:0;width:min(100%,calc(100vw - 34px));padding:9px 12px;display:flex;flex-wrap:wrap;gap:2px 14px;align-items:baseline}
+tr.blockhead .in b{font:600 13px var(--mono)}
+tr.blockhead .in span{color:var(--muted)}
+tr.h1 th,tr.h2 th{background:var(--surface);border-bottom:1px solid var(--line)}
+tr.h1 .trk{font:600 11.5px var(--sans);letter-spacing:.07em;text-transform:uppercase;padding:8px 8px 5px;border-top:3px solid var(--c);border-left:1px solid var(--line)}
+tr.h2 .ses{font:600 12.5px/1.3 var(--serif);padding:2px 8px 8px;border-left:1px solid var(--line)}
+tr.h1 .time,tr.h2 .time{border-bottom:1px solid var(--line)}
+td.cell{border-left:1px solid var(--line);border-bottom:1px solid var(--soft);padding:6px;background:var(--surface)}
+td.cell .box{--c:var(--arts);height:100%;border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 7%,var(--surface));border-radius:3px;padding:6px 8px;display:flex;flex-direction:column;gap:8px}
+.talk{min-width:0}
+.talk+.talk{border-top:1px solid color-mix(in srgb,var(--c) 25%,transparent);padding-top:7px}
+.tt{font:400 11px var(--mono);color:var(--muted);display:block}
+.ttl{font-weight:500;overflow-wrap:anywhere}
+.who{font-size:12px;color:var(--muted);display:block;margin-top:1px}
+.note{color:var(--muted);font-style:italic}
+td.gap{border-left:1px solid var(--line);border-bottom:1px solid var(--soft);background:repeating-linear-gradient(135deg,var(--gap) 0 6px,var(--surface) 6px 12px)}
+td.gap.none{background:var(--gap);color:var(--muted);font-size:12px;text-align:center;vertical-align:middle;padding:6px}
+a.l{color:inherit;text-decoration:underline;text-decoration-color:var(--c,var(--muted));text-decoration-thickness:1px;text-underline-offset:3px}
+a.l:hover{text-decoration-thickness:2px}
+tr.full td{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+tr.full.keynote td{background:var(--key);color:var(--keyink)}
+tr.full.keynote a.l{color:var(--keyink);text-decoration-color:currentColor}
+tr.full .tag{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase}
+tr.full .ttl{font:600 15px var(--serif)}
+tr.full .meta{opacity:.8}
+tr.full .tm{font:500 12px var(--mono)}
+tr.minor td{background:var(--gap);color:var(--muted);font-size:12.5px}
+@media (max-width:699px){:root{--lw:210px;--tw:68px}.time{font-size:10.5px;padding:8px 5px}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 <div class="wrap">
-<header>
-  <div>
-    <h1>Wisdom in the Age of AI</h1>
-    <p class="sub">Calvin University, October 8–10, 2026. Every parallel session with its talk titles, laid out by track so you can compare what runs at the same time.</p>
-  </div>
-</header>
+<h1>Wisdom in the Age of AI Timetable</h1>
+<p class="sub">Time runs down the left, tracks run across. Each talk sits in the rows for the minutes it runs, so you can see what overlaps. Hatched cells are gaps with no talk listed. Titles open the talk's Whova page.</p>
 <div class="controls">
-  <div class="row days" id="days" role="group" aria-label="Day"></div>
+  <div class="row" id="days" role="group" aria-label="Day"></div>
   <div class="row chips" id="chips" role="group" aria-label="Tracks to show"></div>
-  <p class="scrollhint">Swipe sideways to see more tracks. Every time slot scrolls together.</p>
+  <p class="hint">Tap a track to hide or show it. Scroll sideways for more columns; the time column stays in view.</p>
 </div>
 <main id="out"></main>
 </div>
@@ -319,41 +304,97 @@ const D=[
  {t:'12:30-12:45',full:{kind:'panel',tag:'Closing',id:5228611,title:'Closing Remarks',who:'Derek Schuurman',room:'CFAC Auditorium'}}
 ]}
 ];
-const f=s=>{const [h,m]=s.split(':').map(Number);return (h%12||12)+':'+String(m).padStart(2,'0')};
-const rng=r=>{const [a,b]=r.split('-');const ap=+a.slice(0,2)>=12?'pm':'am',bp=+b.slice(0,2)>=12?'pm':'am';return f(a)+(ap!==bp?' '+ap:'')+'–'+f(b)+' '+bp};
+
+const TRK={arts:'Arts & Humanities',biz:'Business',church:'Church',edu:'Education',health:'Healthcare',stem:'STEM'};
+const W={arts:1,biz:1,church:2,edu:2,health:1,stem:1};
+let NCOL=8;const hidden=new Set();const shown=()=>Object.keys(W).filter(k=>!hidden.has(k));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let day='thu';const hidden=new Set();
-const out=document.getElementById('out');
-const link=(id,txt)=>`<a class="slink" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
-function cell(k,label,list,ids){
-  if(!list||!list.length) return `<div class="cell none" data-t="${k}"><div class="empty">No session</div></div>`;
-  return `<div class="cell" data-t="${k}" style="--c:var(--${k})">`+list.map((s,i)=>{const id=(ids||[])[i];const nm=NAMES[id]||s.n;return `<section class="card"><p class="tracklabel">${esc(label)}</p><h3 class="sname">${id?link(id,nm):esc(nm)}</h3><p class="room">${esc(s.r)}</p>${s.talks.length?'<ul>'+s.talks.map((t,j)=>{const tid=(TALKIDS[id]||[])[j];return `<li><span class="tt">${rng(t[0])}</span><span class="title">${tid?link(tid,t[1]):esc(t[1])}</span>${t[2]?`<span class="who">${esc(t[2])}</span>`:''}</li>`}).join('')+'</ul>':'<p class="note">Roundtable discussion with Calvin Institute of Christian Worship staff. No separate talks listed.</p>'}</section>`}).join('')+`</div>`;
+const mins=s=>{const [h,m]=s.split(':').map(Number);return h*60+m};
+const clock=m=>{const h=Math.floor(m/60),mm=m%60;return (h%12||12)+':'+String(mm).padStart(2,'0')};
+const ampm=m=>m>=720?'pm':'am';
+const span=(a,b)=>clock(a)+'–'+clock(b);
+const spanAp=(a,b)=>clock(a)+(ampm(a)!==ampm(b)?' '+ampm(a):'')+'–'+clock(b)+' '+ampm(b);
+const link=(id,txt,c)=>`<a class="l" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
+let day='thu';
+
+function unitsFor(r,bs,be){
+  const units=[];
+  for(const k of shown()){
+    const ss=(r.cols&&r.cols[k])||[],ids=((r.ids||{})[k])||[];
+    const mk=(s,id,span)=>{
+      let items=s.talks.map((t,j)=>{const [a,b]=t[0].split('-');return {a:mins(a),b:mins(b),title:t[1],who:t[2],tid:(TALKIDS[id]||[])[j]}});
+      if(!items.length) items=[{a:bs,b:be,title:NAMES[id]||s.n,who:'',tid:id,note:'Roundtable discussion. No separate talks listed.'}];
+      items.sort((x,y)=>x.a-y.a||x.b-y.b);
+      const groups=[];
+      for(const it of items){const g=groups[groups.length-1];if(g&&it.a<g.b){g.b=Math.max(g.b,it.b);g.items.push(it)}else groups.push({a:it.a,b:it.b,items:[it]})}
+      return {k,span,sid:id,name:NAMES[id]||s.n,groups};
+    };
+    if(!ss.length) units.push({k,span:W[k],sid:null,name:'',groups:[]});
+    else if(ss.length===1&&W[k]===2) units.push(mk(ss[0],ids[0],2));
+    else ss.forEach((s,i)=>units.push(mk(s,ids[i],1)));
+  }
+  return units;
 }
-function render(){
+
+function block(r){
+  const [sa,sb]=r.t.split('-');const bs=mins(sa),be=mins(sb);
+  const units=unitsFor(r,bs,be);
+  if(!units.some(u=>u.groups.length)) return '';
+  const set=new Set([bs,be]);
+  units.forEach(u=>u.groups.forEach(g=>{set.add(Math.max(bs,g.a));set.add(Math.min(be,g.b))}));
+  const bnd=[...set].sort((x,y)=>x-y);
+  const idx=m=>bnd.indexOf(m);
+  // tile each unit with cells (talk groups and gaps)
+  units.forEach(u=>{
+    const cells=[];let p=bs;
+    for(const g of u.groups){if(g.a>p)cells.push({a:p,b:g.a,gap:true});cells.push({a:g.a,b:g.b,g});p=g.b}
+    if(p<be)cells.push({a:p,b:be,gap:true,none:!u.groups.length});
+    u.cells=cells;
+  });
+  const rowsHtml=[];
+  for(let i=0;i<bnd.length-1;i++){
+    let h=`<tr class="r"><th class="time" scope="row">${span(bnd[i],bnd[i+1])}</th>`;
+    for(const u of units){
+      for(const c of u.cells){
+        if(idx(c.a)!==i) continue;
+        const rs=idx(c.b)-idx(c.a);
+        if(c.gap){h+=`<td class="gap${c.none?' none':''}" rowspan="${rs}" colspan="${u.span}">${c.none?'No session':''}</td>`;continue}
+        h+=`<td class="cell" rowspan="${rs}" colspan="${u.span}"><div class="box" style="--c:var(--${u.k})">`+c.g.items.map(it=>`<div class="talk"><span class="tt">${span(it.a,it.b)}</span><span class="ttl">${it.tid?link(it.tid,it.title):esc(it.title)}</span>${it.note?`<span class="who note">${esc(it.note)}</span>`:''}${it.who?`<span class="who">${esc(it.who)}</span>`:''}</div>`).join('')+`</div></td>`;
+      }
+    }
+    rowsHtml.push(h+'</tr>');
+  }
+  const trkHead=shown().map(k=>`<th class="trk" colspan="${W[k]}" style="--c:var(--${k})">${TRK[k]}</th>`).join('');
+  const sesHead=units.map(u=>`<th class="ses" colspan="${u.span}">${u.sid?link(u.sid,u.name):'<span class="note">No session</span>'}</th>`).join('');
+  return `<tr class="blockhead"><th colspan="${NCOL+1}"><div class="in"><b>${spanAp(bs,be)}</b><span>Parallel sessions</span></div></th></tr>`+
+    `<tr class="h1"><th class="time" rowspan="2">Time</th>${trkHead}</tr><tr class="h2">${sesHead}</tr>`+rowsHtml.join('');
+}
+
+function renderDay(){
   const d=D.find(x=>x.id===day);
-  const heads=`<div class="heads">${TR.map(([k,l])=>`<div data-t="${k}" style="--c:var(--${k})">${l}</div>`).join('')}</div>`;
-  out.innerHTML=d.rows.map(r=>{
-    if(r.minor) return `<div class="slot"><p class="time">${rng(r.t)} <small>${esc(r.minor)}</small></p></div>`;
-    if(r.full){const x=r.full;return `<div class="slot"><p class="time">${rng(r.t)}</p><div class="full ${x.kind}"><span class="tag">${esc(x.tag)}</span><span class="title">${x.id?link(x.id,x.title):esc(x.title)}</span><span class="who">${esc(x.who)}</span><span class="room">${esc(x.room)}</span></div></div>`}
-    return `<div class="slot"><p class="time">${rng(r.t)} <small>Parallel sessions</small></p><div class="scroll"><div class="sheet">${heads}<div class="grid">${TR.map(([k,l])=>cell(k,l,r.cols[k],(r.ids||{})[k])).join('')}</div></div></div></div>`;
+  NCOL=shown().reduce((s,k)=>s+W[k],0);
+  document.documentElement.style.setProperty('--ncol',NCOL);
+  const body=d.rows.map(r=>{
+    const [a,b]=r.t.split('-');const A=mins(a),B=mins(b);
+    if(r.minor) return `<tr class="full minor"><td colspan="${NCOL+1}"><div class="in"><span class="tm">${spanAp(A,B)}</span><span>${esc(r.minor)}</span></div></td></tr>`;
+    if(r.full){const x=r.full;return `<tr class="full ${x.kind}"><td colspan="${NCOL+1}"><div class="in"><span class="tm">${spanAp(A,B)}</span><span class="tag">${esc(x.tag)}</span><span class="ttl">${x.id?link(x.id,x.title):esc(x.title)}</span><span class="meta">${esc(x.who)}</span><span class="meta">${esc(x.room)}</span></div></td></tr>`}
+    return block(r);
   }).join('');
-  applyHidden();
+  document.getElementById('out').innerHTML=`<div class="scroll"><table><colgroup><col class="t">${'<col>'.repeat(NCOL)}</colgroup><tbody>${body}</tbody></table></div>`;
 }
-function applyHidden(){
-  out.querySelectorAll('[data-t]').forEach(e=>{e.hidden=hidden.has(e.dataset.t)});
-  document.documentElement.style.setProperty('--n',Math.max(1,6-hidden.size));
+function controls(){
+  const el=document.getElementById('days');
+  el.innerHTML=D.map(x=>`<button type="button" data-d="${x.id}" aria-pressed="${x.id===day}">${x.label}, ${x.date}</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderDay()};
 }
-let syncing=false;
-out.addEventListener('scroll',e=>{const s=e.target;if(syncing||!s.classList||!s.classList.contains('scroll'))return;syncing=true;const x=s.scrollLeft;out.querySelectorAll('.scroll').forEach(o=>{if(o!==s)o.scrollLeft=x});requestAnimationFrame(()=>{syncing=false})},true);
-function buildControls(){
-  const dEl=document.getElementById('days');
-  dEl.innerHTML=D.map(x=>`<button type="button" data-d="${x.id}" aria-pressed="${x.id===day}">${x.label}, ${x.date}</button>`).join('');
-  dEl.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;dEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};
+function chips(){
   const c=document.getElementById('chips');
-  c.innerHTML=TR.map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="true" style="--c:var(--${k})">${l}</button>`).join('');
-  c.onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;if(hidden.has(k))hidden.delete(k);else hidden.add(k);b.setAttribute('aria-pressed',!hidden.has(k));applyHidden()};
+  c.innerHTML=Object.keys(W).map(k=>`<button type="button" data-k="${k}" aria-pressed="${!hidden.has(k)}" style="--c:var(--${k})">${TRK[k]}</button>`).join('');
+  c.onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;
+    if(hidden.has(k))hidden.delete(k);else if(shown().length>1)hidden.add(k);
+    c.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',!hidden.has(x.dataset.k)));renderDay()};
 }
-buildControls();render();
+controls();chips();renderDay();
 </script>
 </body>
 </html>
