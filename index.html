@@ -46,7 +46,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .slot{margin-bottom:22px}
 .time{font:500 13px var(--mono);margin:0 0 8px;display:flex;gap:10px;align-items:baseline;color:var(--ink)}
 .time small{color:var(--muted);font-weight:400}
-.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(6,minmax(0,1fr))}
+.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}
 .heads{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);padding-block:8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
 .heads div{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;border-top:3px solid var(--c);padding-top:6px}
 .cell{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -78,18 +78,30 @@ li:first-child{border-top:0;padding-top:0}
 .full .title{font-family:var(--serif);font-size:16px;font-weight:600}
 .minor{color:var(--muted);font-size:13px;padding-block:2px}
 .hl .cell-hint{display:none}
-@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (min-width:1100px){
-  .heads{display:grid}
+.cell.none{display:none}
+/* Side-by-side columns: desktops, iPad and phones in landscape */
+@media (min-width:1100px),(min-width:800px) and (orientation:landscape){
+  .heads{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
   .grid{grid-template-columns:repeat(6,minmax(0,1fr))}
   .tracklabel{display:none}
+  .cell.none{display:flex}
   .empty{display:block;color:var(--muted);padding:6px 2px}
 }
-@media (max-width:1099px){ .cell.none{display:none} }
+@media (min-width:800px) and (max-width:1099px) and (orientation:landscape){
+  body{font-size:13px}
+  .heads,.grid{gap:6px}
+  .heads div{font-size:10px;letter-spacing:.04em}
+  .card{padding:8px 8px 9px}
+  .sname{font-size:12.5px}
+  .tt{font-size:10.5px}
+  .who{font-size:11.5px}
+  .room{font-size:11px}
+}
 .mobhint{display:none;color:var(--muted);font-size:13px;margin:0}
-/* Phones: one track at a time, full width, switched from a sticky tab bar */
-@media (max-width:699px){
+/* Portrait phones: one track at a time, full width, switched from a sticky tab bar */
+@media (max-width:699px) and (orientation:portrait){
   body{font-size:15px}
+  .grid{grid-template-columns:minmax(0,1fr)}
   .controls{display:contents}
   .days{margin-bottom:10px}
   .mobhint{display:block;margin-bottom:8px}
@@ -338,7 +350,8 @@ const f=s=>{const [h,m]=s.split(':').map(Number);return (h%12||12)+':'+String(m)
 const rng=r=>{const [a,b]=r.split('-');const ap=+a.slice(0,2)>=12?'pm':'am',bp=+b.slice(0,2)>=12?'pm':'am';return f(a)+(ap!==bp?' '+ap:'')+'–'+f(b)+' '+bp};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let day='thu';const hidden=new Set();
-const isMob=()=>window.matchMedia('(max-width:699px)').matches;
+const isMob=()=>window.matchMedia('(max-width:699px) and (orientation:portrait)').matches;
+const isSix=()=>window.matchMedia('(min-width:1100px),(min-width:800px) and (orientation:landscape)').matches;
 let mobTrack='arts';try{const v=localStorage.getItem('track');if(v&&TR.some(t=>t[0]===v))mobTrack=v}catch(e){}
 const out=document.getElementById('out');
 const link=(id,txt)=>`<a class="slink" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
@@ -364,7 +377,7 @@ function applyHidden(){
   out.querySelectorAll('.slot').forEach(sl=>{const g=sl.querySelector('.grid');if(!g){sl.hidden=false;return}const c=g.querySelector('.cell[data-t="'+mobTrack+'"]');sl.hidden=mob&&(!c||c.classList.contains('none'))});
   document.querySelectorAll('#chips button').forEach(b=>b.setAttribute('aria-pressed',mob?b.dataset.k===mobTrack:!hidden.has(b.dataset.k)));
   const vis=6-hidden.size;
-  document.querySelectorAll('.grid,.heads').forEach(e=>{e.style.gridTemplateColumns=window.matchMedia('(min-width:1100px)').matches&&vis>0&&vis<6?`repeat(${vis},minmax(0,1fr))`:''});
+  document.querySelectorAll('.grid,.heads').forEach(e=>{e.style.gridTemplateColumns=isSix()&&vis>0&&vis<6?`repeat(${vis},minmax(0,1fr))`:''});
 }
 function buildControls(){
   const dEl=document.getElementById('days');
