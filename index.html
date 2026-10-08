@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Wisdom in the Age of AI conference (Calvin University, Oct 8-10, 2026): every parallel session and talk, with tracks side by side as columns.">
+<title>Wisdom in the Age of AI Schedule</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: one row per time slot; six track columns side by side (3 on tablet, 1 on phone). Talk titles listed under each session. */
+:root{
+  --bg:#f5f6f4; --surface:#ffffff; --ink:#1c2321; --muted:#5d6864; --line:#d9ddd9; --soft:#eceeeb;
+  --arts:#a8456b; --biz:#2f6b8f; --church:#6d4aa3; --edu:#b0701a; --health:#2f7d57; --stem:#4b5563;
+  --key:#1c2321; --keyink:#f5f6f4;
+  --serif:"Source Serif 4",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#2f3935; --soft:#262d2a;
+  --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
+  --key:#e8ece9; --keyink:#141917; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#2f3935; --soft:#262d2a;
+  --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
+  --key:#e8ece9; --keyink:#141917; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);padding-inline:16px;padding-block:24px 56px}
+.wrap{max-width:1500px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:end;justify-content:space-between;margin-bottom:20px}
+h1{font:600 clamp(24px,3.4vw,36px)/1.1 var(--serif);margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.controls{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+button{font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.days button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips button{display:inline-flex;align-items:center;gap:7px;padding:5px 10px}
+.chips button::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c)}
+.chips button[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+.slot{margin-bottom:22px}
+.time{font:500 13px var(--mono);margin:0 0 8px;display:flex;gap:10px;align-items:baseline;color:var(--ink)}
+.time small{color:var(--muted);font-weight:400}
+.heads,.grid{display:grid;gap:10px;grid-template-columns:repeat(6,minmax(0,1fr))}
+.heads{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);padding-block:8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.heads div{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;border-top:3px solid var(--c);padding-top:6px}
+.cell{display:flex;flex-direction:column;gap:10px;min-width:0}
+.cell[hidden]{display:none!important}
+.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:6px;padding:11px 12px 12px;min-width:0}
+.tracklabel{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--c);margin:0 0 4px}
+.sname{font:600 14px/1.3 var(--serif);margin:0 0 2px;text-wrap:balance}
+a.slink{color:inherit;text-decoration:underline;text-decoration-color:var(--c,var(--muted));text-decoration-thickness:2px;text-underline-offset:3px}
+a.slink:hover{color:var(--c,var(--ink))}
+li a.slink{text-decoration-thickness:1px;text-decoration-color:var(--line)}
+li a.slink:hover{text-decoration-color:var(--c)}
+a.slink:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:2px}
+.full a.slink:hover{color:inherit;text-decoration-color:currentColor}
+.full.keynote a.slink,.full.keynote a.slink:hover{color:var(--keyink);text-decoration-color:currentColor}
+.full.keynote a.slink:hover{text-decoration-thickness:3px}
+.room{font-size:12px;color:var(--muted);margin:0 0 8px}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+li{border-top:1px solid var(--soft);padding-top:8px;min-width:0}
+li:first-child{border-top:0;padding-top:0}
+.tt{font:400 11.5px var(--mono);color:var(--muted);display:block}
+.title{font-weight:500;overflow-wrap:anywhere}
+.who{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
+.note{color:var(--muted);font-style:italic;margin:0}
+.empty{display:none}
+.full{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.full.keynote{background:var(--key);color:var(--keyink);border-color:var(--key)}
+.full.keynote .who,.full.keynote .room{color:inherit;opacity:.8}
+.full .tag{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase}
+.full .title{font-family:var(--serif);font-size:16px;font-weight:600}
+.minor{color:var(--muted);font-size:13px;padding-block:2px}
+.hl .cell-hint{display:none}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1100px){
+  .heads{display:grid}
+  .grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tracklabel{display:none}
+  .empty{display:block;color:var(--muted);padding:6px 2px}
+}
+@media (max-width:1099px){ .cell.none{display:none} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Wisdom in the Age of AI</h1>
+    <p class="sub">Calvin University, October 8–10, 2026. Every parallel session with its talk titles, laid out by track so you can compare what runs at the same time.</p>
+  </div>
+</header>
+<div class="controls">
+  <div class="row days" id="days" role="group" aria-label="Day"></div>
+  <div class="row chips" id="chips" role="group" aria-label="Tracks to show"></div>
+</div>
+<main id="out"></main>
+</div>
+<script>
+const TR=[['arts','Arts & Humanities'],['biz','Business'],['church','Church'],['edu','Education'],['health','Healthcare'],['stem','STEM']];
+const R={arts:'CFAC Recital Hall',biz:'Bytwerk Theater, DeVos',cw:'Willow West',ce:'Willow East',ge:'Great Hall East',wp:'White Pine/Maple',hk:'Hickory, Prince Center',bd:'Prince Board Room'};
+const EVT='5bebAgheKa6pwSyrwXFYqDqltkXDnJ5nTv8btJB8BD8%3D';
+const NAMES={"5251502": "Arts and Humanities Session 1", "5251494": "Business Session 1", "5251501": "Church Session 1A: AI, Love, and Idolatry", "5383760": "Church Session 1B: Pastoral Practice and Discernment", "5251499": "Education Session 1A: Designing curriculum", "5402924": "Education Session 1B: Policy and high-level approaches to AI", "5251500": "Healthcare Session 1", "5251498": "STEM Session 1: Theological Foundations", "4997963": "Arts and Humanities Session 2", "4997959": "Business Session 2", "4997964": "Church Session 2A: AI, Ministry, and Theological Frameworks", "5383765": "Church Session 2B: AI Tools for Scripture, Sermons, and Discipleship", "4997960": "Education Session 2A: The problem of AI in teaching and learning", "5402993": "Education Session 2B: AI and spiritual formation", "4997962": "Healthcare Session 2", "4997961": "STEM Session 2: Theological Foundations / Ethics: Conceptual", "4997979": "Arts and Humanities Session 3", "4997975": "Business Session 3", "4997980": "Church Session 3A: AI, Embodiment, and Holistic Formation", "5384020": "Church Session 3B: AI and Corporate Worship Practices", "4997976": "Education Session 3A: Pedagogy", "4997978": "Use of AI and other Technology in Nursing Education and Practice: Panel Discussion", "4997977": "STEM Session 3: Ethics: Conceptual / Ethics: Applied", "4997986": "Arts and Humanities Session 4", "4997982": "Business Session 4", "4997987": "Church Session 4A: Discipleship and Spiritual Formation in the Age of AI", "5384042": "Church Session 4B: Mission, Ministry, and the Telos of AI", "4997983": "Education Session 4A: Scholarly Formation", "5403024": "Education Session 4B: Writing", "4997985": "Healthcare Session 4", "4997984": "STEM Session 4: Formation & Learning", "4997993": "Arts and Humanities Session 5", "4997989": "Business Session 5", "4997994": "Church Session 5: Global Perspectives on AI and Ministry", "4997990": "Education Session 5A: AI and Spiritual Formation", "5403036": "Education Session 5B: Studying Students", "4997992": "Healthcare Session 5", "4997991": "STEM Session 5: Christian Vocation", "4998000": "Arts and Humanities Session 6", "4997996": "Business Session 6", "4997997": "Education Session 6A: Wisdom", "5403080": "Education Session 6B: Virtues", "4997998": "STEM Session 6: Justice, Care & Community / Ethics: Conceptual", "5384053": "Church Session 6A & B: Roundtable with Calvin Institute of Christian Worship staff"};
+const href=id=>`https://whova.com/embedded/session/${EVT}/${id}/`;
+const TALKIDS={"4997959":["5383478","5383484"],"4997960":["5402996","5402997","5581803"],"4997961":["5407382","5407383","5407384","5407406","5407386"],"4997962":["5474568","5383620","5383621","5383622","5571369","5383639"],"4997963":["5400584","5400585","5400635"],"4997964":["5383757","5383759","5383764"],"4997975":["5383598","5383599"],"4997976":["5403013","5402990","5403083"],"4997977":["5407385","5407407","5407409","5407411"],"4997978":["5383625","5622008","5622011"],"4997979":["5400636","5400638"],"4997980":["5281197","5477944","5599120"],"4997982":["5383600","5383608"],"4997983":["5403025","5403026","5403084"],"4997984":["5407414","5407416","5407419","5407421"],"4997985":["5620599","5474566","5383633"],"4997986":["5400639","5400640"],"4997987":["5384049","5384047","5384048"],"4997989":["5383609","5383610"],"4997990":["5403016","5403086","5403050"],"4997991":["5407424","5407427","5407434","5407435"],"4997992":["5383628","5383643","5383635","5383638"],"4997993":["5400641","5400642","5400643"],"4997994":["5384051","5612375","5590476"],"4997996":["5383612","5383472"],"4997997":["5403082","5403023"],"4997998":["5407508","5407536","5407539","5407548","5407551"],"4998000":["5400644","5400645","5400646"],"5251494":["5383613","5383473"],"5251498":["5407371","5407378","5407379","5407380"],"5251499":["5402926","5402980","5402985"],"5251500":["5383614","5383632","5383640","5383641"],"5251501":["5384024","5383747","5383748"],"5251502":["5400580","5400582","5400583"],"5383760":["5383761","5383763","5383767"],"5383765":["5383766","5384041","5383768"],"5384020":["5384026","5384040","5599124"],"5384042":["5384054","5384061","5384056"],"5402924":["5402989","5403000","5402992"],"5402993":["5403049","5612153","5403009"],"5403024":["5403030","5403033","5403035"],"5403036":["5403053","5403054","5403062"],"5403080":["5403028","5403085"]};
+const S=(n,r,talks)=>({n,r,talks});
+const D=[
+{id:'thu',label:'Thursday',date:'Oct 8',rows:[
+ {t:'12:30-13:30',full:{kind:'keynote',tag:'Keynote 1',id:4997957,title:'A Better Eschatology: Toward AI-Enabled Human Flourishing',who:'Israel (Izzy) Soong, Johns Hopkins SAIS',room:'CFAC Auditorium'}},
+ {t:'13:30-14:00',minor:'Break'},
+ {t:'14:00-15:30',ids:{arts:[5251502],biz:[5251494],church:[5251501,5383760],edu:[5251499,5402924],health:[5251500],stem:[5251498]},cols:{
+  arts:[S('',R.arts,[
+   ['14:00-14:30','Imago Dei in the Age of AI: Christocentric Relational View','Jonathan Anthony Hernandez'],
+   ['14:30-15:00','Imago Dei, Formation, and the Creative Process in an Age of AI','Evan Mazunik'],
+   ['15:00-15:30','Against the Perfect Image: Augustine, Imago Dei, and the False Eschatology of AI Creativity','Dohyung (Jacob) Cha']])],
+  biz:[S('',R.biz,[
+   ['14:00-14:45','Faithful and responsible use of AI in human resources','Rachel Hammond; Rachel David; Jamie Jang; Peter Osborn'],
+   ['14:45-15:30',"Detecting systemic corruption before exposure: An AI-based counterfactual analysis of Petrobras's Operation Car Wash",'Samuel Mamede']])],
+  church:[S('1A · AI, Love, and Idolatry',R.cw,[
+   ['14:00-14:30','Between Digital Proximity and Embodied Relationships: Christian Youth and the Use of Artificial Companions in Light of Embodied Relationality','Daan Molenaar'],
+   ['14:30-15:00',"Pilgrims, Not Lovers: Augustine's Ordo Amoris and the Limits of AI-Assisted Preaching",'Mark Barnes'],
+   ['15:00-15:30','When Does AI Attachment Become Idolatry?','Andrew Noble']]),
+   S('1B · Pastoral Practice and Discernment',R.ce,[
+   ['14:00-14:30','Formation, Not Just Function: Pastoral Discernment in the Age of AI','Jim Stump'],
+   ['14:30-15:00','Westering: Grief, Discernment, and the Pastoral Care of Tech Workers','Travis Jamieson'],
+   ['15:00-15:30','Artificial Intelligence and Pastoral Care: Opportunities, Ethical Challenges, and Theological Reflections','Susan Murimi']])],
+  edu:[S('1A · Designing curriculum',R.ge,[
+   ['14:00-14:30','Developing Expertise: Designing Formational First-Year Research Projects in the Age of Generative AI','Jenny Bruxvoort; Kate Wimer'],
+   ['14:30-15:00','Designing an Interdisciplinary AI Minor: Cultivating Wisdom, Responsibility, and Faith in the Age of Artificial Intelligence','Martin Jones'],
+   ['15:00-15:30','Developing Discernment in the Use of AI for Relational Professions','Robert van Putten; M.G. le Comte; Erik-Jan Smits']]),
+   S('1B · Policy and high-level approaches to AI',R.wp,[
+   ['14:00-14:30','Values Aligned? Deliberating AI Use and Living Wisely in Christian Higher Education Leadership','Traver Carlson'],
+   ['14:30-15:00','Evaluating Faithful AI Use in Higher Education: A Pilot of the Christian Compass for AI Model','Carmin Smith'],
+   ['15:00-15:30','AI, Faith, and Wise Teaching and Learning','Deb Van Duinen']])],
+  health:[S('',R.hk,[
+   ['14:00-14:30','Flourishing in Healthcare: Integrating AI and Faith in Practice','Meagan Soltwisch'],
+   ['14:30-15:00','Field Experience and Review of AI/ML in the Radiation Oncology Workflow','Joe Driewer'],
+   ['15:00-15:15','Field Experience: AVBirth wearable birth simulator','Elizabeth Byma'],
+   ['15:15-15:30','AI and technology use to promote quality of care','Elizabeth Oommen; Brian Kreisman']])],
+  stem:[S('Theological Foundations',R.bd,[
+   ['14:00-14:20','Man as a Machine: Artificial Intelligence and the Image of Man','Esa M. Rantanen'],
+   ['14:40-15:00','Christian Limitations on AI Counseling: The Importance of Embodied Empathy','Anthony Rose'],
+   ['15:00-15:20','Bridging Gaps between AI, Humans and Reality','Shelley Zhang'],
+   ['15:20-15:30','Closing','']])]}},
+ {t:'15:30-16:00',minor:'Break'},
+ {t:'16:00-17:30',ids:{arts:[4997963],biz:[4997959],church:[4997964,5383765],edu:[4997960,5402993],health:[4997962],stem:[4997961]},cols:{
+  arts:[S('',R.arts,[
+   ['16:00-16:30','When the Medium Remembers: Preserving the Witness of Ed Lantzer in an AI Age','Debra Heinzelman'],
+   ['16:30-17:00','What Matters? How AI Changed My Fine Arts Class','Phoenix Park-Kim'],
+   ['17:00-17:30','Forming Creative Christian Leaders in an Age of AI: Performing Arts Education as a Counterbalance and Catalyst','Kathie Davis']])],
+  biz:[S('',R.biz,[
+   ['16:00-16:45','Paying attention, giving authorization: Beatitudinal guidelines for agentic-AI marketing','Craig E Mattson; Jill Risner'],
+   ['16:45-17:30','Wise marketing in the age of AI: A panel discussion on faith, marketing, and artificial intelligence','Jill Risner; Jordan Buning; Jory Grooters']])],
+  church:[S('2A · AI, Ministry, and Theological Frameworks',R.cw,[
+   ['16:00-16:30','Theological Frameworks for Faithful Ministry and Congregational Life in the Age of Artificial Intelligence','Aida Yemaneberhan'],
+   ['16:30-17:00','Thou Shalt Not Kill: Abraham Kuyper and the AI Revolution','Anders Liman'],
+   ['17:00-17:30','Groaning in the Machine: A Reformed-Pentecostal Retrieval of Spirit-Led Presence in Times of AI','Fernando Tamara']]),
+   S('2B · AI Tools for Scripture, Sermons, and Discipleship',R.ce,[
+   ['16:00-16:30','From Sermon to Scripture: How AI Can Support Bible-First Discipleship Within Denominational Communities','Fengchun Qiao'],
+   ['16:30-17:00','Ministers Navigating Artificial Intelligence: A Mixed-Methods Analysis of Ministry Priorities and the Intersection of Pastoral AI Literacy and Preaching Preparation','Jonathan Noble'],
+   ['17:00-17:30','SermonPress AI: Empowering Churches with Innovative AI Solutions','Paul Griffioen']])],
+  edu:[S('2A · The problem of AI in teaching and learning',R.ge,[
+   ['16:00-16:30','Is AI a Threat to Teaching and Learning? A Panel-Led Discussion','Kevin Corcoran; David Koetje; Joe Shin'],
+   ['16:30-17:00','Too Fast to Become Wise? AI, Patience, and Holistic Formation in Christian Education','Sam Ha'],
+   ['17:00-17:30','Case studies and thought experiments to cultivate wisdom for a weird world','Nate Otey']]),
+   S('2B · AI and spiritual formation',R.wp,[
+   ['16:00-16:30','Understanding the impact of AI on students’ formative development and theological','Marilyn Naidoo'],
+   ['16:30-17:00',"Synthetic Omniscience: AI's Challenge to Formation in a World That Knows Everything but Understands Nothing",'Joshua Jonas'],
+   ['17:00-17:30','The Formation of Christian Students in the Digital Age: Martin Buber’s “I and Thou” Revisited','Bram Kunz']])],
+  health:[S('',R.hk,[
+   ['16:00-16:30','Leveraging Technology to Improve Efficiency and Quality in Patient Care','Michelle Pena; David Bobryk'],
+   ['16:30-16:40','Trustworthy AI in Healthcare: A Governance Blueprint for Operational Excellence','Leonard Wills'],
+   ['16:40-16:50','Epistemic Humility as an Alignment Objective in Counseling AI: An Augustinian Proposal','Dohyung (Jacob) Cha'],
+   ['16:50-17:00','Discernment and Responsible AI in Healthcare Education: A Faith-Informed, Patient-Centered Framework','Kathalene Harris'],
+   ['17:00-17:10','Artificial Intelligence in Hemophilia: Methodological Quality, Validation Gaps, and Ethical Readiness for Clinical Translation','Pravallika Manchu'],
+   ['17:10-17:20','Predicting Inhibitor Development in Hemophilia: An Interpretable Machine Learning Approach','Swarna Bharathi Kathi']])],
+  stem:[S('Theological Foundations / Ethics: Conceptual',R.bd,[
+   ['16:00-16:20','Against Algorithmic Gnosis: Why Origen Matters for the Limits of Explainable AI','Dohyung (Jacob) Cha'],
+   ['16:20-16:40','What Does It Take to Be Wise?: Moving Beyond Alarm and Governance in the Christian AI Conversation','Rachel Wondergem'],
+   ['16:40-17:00','Three Paradigms of Artificial Intelligence and Their Moral Imaginaries','Fernando Pasquini Santos'],
+   ['17:00-17:20','Emissions, Impacts, and Embodiment: A Techno-Economic Sustainability Analysis of AI Data Centers','Matthew K. Heun; Jeremy VanAntwerp'],
+   ['17:20-17:30','Closing','']])]}},
+ {t:'17:30-19:30',minor:'Dinner break (on your own)'},
+ {t:'19:30-20:30',full:{kind:'keynote',tag:'Keynote 2',id:4997973,title:'The Dignity of Learning in the Age of Powerful AI',who:'Meghan Sullivan, University of Notre Dame',room:'CFAC Auditorium'}}
+]},
+{id:'fri',label:'Friday',date:'Oct 9',rows:[
+ {t:'08:30-10:00',ids:{arts:[4997979],biz:[4997975],church:[4997980,5384020],edu:[4997976],health:[4997978],stem:[4997977]},cols:{
+  arts:[S('',R.arts,[
+   ['08:30-09:00','But Can the Beetle Hold a Brush?: Reflections on Pragmatism and AI Creativity for an Artful Public','Nolan Cowan'],
+   ['09:00-09:30','Human Is the New Vinyl: Certifying Human Creativity as Faithful Response to AI','Micah Voraritskul']])],
+  biz:[S('',R.biz,[
+   ['08:30-09:15','Aligned shalom and faithful minority: A Christian framework for AI-assisted negotiations','Suraj Sharma; Peter Snyder; Bernardo Hargous'],
+   ['09:15-10:00','AI triggered Ethical HR Challenges: Integrating the Accountability Flourishing Model','Aby Alexandar']])],
+  church:[S('3A · AI, Embodiment, and Holistic Formation',R.cw,[
+   ['08:30-09:00','Inoculating the Church Against AI Addictions: Preserving Spiritual Affections in an Age of Synthetic Transcendence','Clark Cully'],
+   ['09:00-09:30','Digital Mediation as a Means of Grace: Designing Technology for Mutual Dependence in Churches','Jim Laing'],
+   ['09:30-10:00','AI, the biblical story, in rival stories','Derek Schuurman']]),
+   S('3B · AI and Corporate Worship Practices',R.ce,[
+   ['08:30-09:00','The Proprioceptive Parish: Why Kinetic Liturgy Is the Answer Against the Gnostic Impulse of AI','Chang In Sohn'],
+   ['09:00-09:30','Copilot, Teach Us to Pray','Paul Ryan'],
+   ['09:30-10:00','Using AI for Live Translation in Worship','Ken Arnold']])],
+  edu:[S('3A · Pedagogy',R.ge,[
+   ['08:30-09:00','Hopeful Pedagogies in Worlds Without Work','Christine Jeske'],
+   ['09:00-09:30','Panel: Building a Faithful Institutional AI Framework','Holland Prior; April Cordero; Holly Irwin; Heather Ross; Montague Williams; Robert Thompson'],
+   ['09:30-10:00','Forming Wise Teachers for the Age of AI: Preparing Preservice Educators for Faithful and Responsible Classroom Integration','Shelly Engle']])],
+  health:[S('Panel: Use of AI and other Technology in Nursing Education and Practice',R.hk,[
+   ['08:30-10:00',"Why AI awareness belongs in every nurse educator's toolkit",'Erika Frost'],
+   ['08:30-10:00','Exploring emerging teaching strategies that incorporate AI','Alida Semrinec'],
+   ['08:30-10:00','From Detection to Direction: Teaching Academic Integrity with AI','Cynthia McCurren']])],
+  stem:[S('Ethics: Conceptual / Ethics: Applied',R.bd,[
+   ['08:30-08:50','Claude Said It, I Believe It: Probability in the 17th and 18th centuries.','Nathan Sunukjian'],
+   ['08:50-09:10','Christian Philosophy and the Case of Responsible Military AI','Christine Boshuijzen-van Burken'],
+   ['09:10-09:30','The Ethics of AI-Assisted Code Migration in Regulated Financial Systems','Ronit Sharma'],
+   ['09:30-09:50','Designing Explainable AI Systems for Human Dignity in High-Stakes Domains','Fola Ayano']])]}},
+ {t:'10:00-10:30',minor:'Break'},
+ {t:'10:30-12:00',ids:{arts:[4997986],biz:[4997982],church:[4997987,5384042],edu:[4997983,5403024],health:[4997985],stem:[4997984]},cols:{
+  arts:[S('',R.arts,[
+   ['10:30-11:30','AI, Beauty, and the Human Experience of the Arts','Mark Hijleh; David Davies'],
+   ['11:30-12:00','Why AI Will NEVER Supplant Human Creativity','Steven Potaczek']])],
+  biz:[S('',R.biz,[
+   ['10:30-11:15','Startup Garage: Faithful Friction — Honest Conversations About AI in Business','Julie Adkins; Jon VerLee; Mark Johnson; Josh Barker; Dan Hungerford'],
+   ['11:15-12:00','Integrating AI as a tool: A theological and practical framework','Joseph Schools']])],
+  church:[S('4A · Discipleship and Spiritual Formation in the Age of AI',R.cw,[
+   ['10:30-11:00','The Blessed Pilgrimage: Creating and Cultivating Space for Spiritual Growth and Nurturing in the AI Age','Yvette, Ying Wai Lau'],
+   ['11:00-11:30','Pay Attention! Navigating AI Benefits and Risks in the Church','Harry Plantinga'],
+   ['11:30-12:00','Algorithms and Discipleship: Spiritual Formation in the Age of AI','Steven Keil']]),
+   S('4B · Mission, Ministry, and the Telos of AI',R.ce,[
+   ['10:30-11:00','Leveraging AI for Sustainable and Expansive Digital Evangelism','Jaeyoung Chun'],
+   ['11:00-11:30','The Catechism of the Query: Prompt Engineering as Apophatic Practice in the Age of Algorithms','Nicholas "V" Rosas'],
+   ['11:30-12:00','AI in Ministry and the Telos of Practice: Toward Purpose-Driven Technological Development','Wha Chul Son']])],
+  edu:[S('4A · Scholarly Formation',R.ge,[
+   ['10:30-11:00','The Renewal of Reason in the Algorithmic Age','Sung Soo Lim'],
+   ['11:00-11:30','What is AI making of us? And what can we do about it?','Joanne Jung'],
+   ['11:30-12:00','Human Progress and the Push for AI in Education: Critical Insights from a Christian Virtue Ethic','Jonathan Lett']]),
+   S('4B · Writing',R.wp,[
+   ['10:30-11:00','ELA teachers’ experiences teaching writing in the midst of rising AI ubiquity: Considering truth, reality, artificiality and vocation','Michelle Ratering'],
+   ['11:00-11:30','Saying What I Cannot Say: Creating Silence and Self-Trust in the Age of Generative AI','Paige Ray'],
+   ['11:30-12:00','The Rhombus of Responsibility: Teaching Students how to Read and Learn in Community','Katherine Wyma; Charity Yost Reed']])],
+  health:[S('',R.hk,[
+   ['10:30-11:00','The Use of AI in Nursing Education by Students and Educators','Adejoke Ayoola'],
+   ['11:00-11:30','The Use of AI in Healthcare Diagnostics','Clifford Cho'],
+   ['11:30-12:00','The Use of Ambient Voice Technology, Coupled With Natural Language Processing and Artificial Intelligence (DAX™), on Primary Care Provider Documentation Burden','Jeff Fletcher']])],
+  stem:[S('Formation & Learning',R.bd,[
+   ['10:30-10:50','Leveraging AI to Extend Learning without Short-Circuiting Understanding in the Teaching of General Chemistry','Herb Fynewever'],
+   ['10:50-11:10','A Roadmap for Integrating AI into Christian Engineering Education','Michael J. McGinnis'],
+   ['11:10-11:30','AI as a Companion for Spiritual Reflection: Reimagining Spiritual Direction in the Age of Language Models','Nia Austin Ikpeiwunna'],
+   ['11:30-11:50','Honest Work Outside the Classroom','Olaf Hall-Holt']])]}},
+ {t:'12:00-13:30',minor:'Lunch break'},
+ {t:'13:30-15:00',ids:{arts:[4997993],biz:[4997989],church:[4997994],edu:[4997990,5403036],health:[4997992],stem:[4997991]},cols:{
+  arts:[S('',R.arts,[
+   ['13:30-14:00','Humanity in Its Own Image: Actor Training, Generative AI, and the Imago Dei','John Scritchfield'],
+   ['14:00-14:30','Reflections on Disruptions in Video and Film Production brought on by Generative AI and the Consequences for Christian Media','Clemens Cavallin'],
+   ['14:30-15:00','The Subversive Use of Recommendation Algorithms and the Construction of a Religions Identity in Brazil','Thais Galvão']])],
+  biz:[S('',R.biz,[
+   ['13:30-14:15','Faithful and Responsible Use of AI in Accounting','Marilyn Stansbury; Jun Kim; Jeremy Louters; Joe Ponstein'],
+   ['14:15-15:00','How should Individual Investors Use Generative Artificial Intelligence: From a Christian Perspective','Dongye Song']])],
+  church:[S('5 · Global Perspectives on AI and Ministry','Willow',[
+   ['13:30-14:00',"Finding God in the Machine or Forming Themselves? Young Kenyan Women's Spiritual Formation in the Age of AI",'Damaris Parsitau'],
+   ['13:30-15:00','Modeling Communities in Peril: Polarization and the Changes in the Social Fabric of Congregations through an Agent-based Approach','Eric Araújo'],
+   ['14:30-15:00','Faithful Ministry in an AI-Driven Age: Preaching, Discipleship, and Spiritual Formation from the Perspective of a Christian Educator and Evangelist','Tariq Iqbal']])],
+  edu:[S('5A · AI and Spiritual Formation',R.ge,[
+   ['13:30-14:00','Reconciling AI: Faculty and Student Perspectives on AI and the Impact on Human-Centered Christian Education','Jenny Tanis'],
+   ['14:00-14:30','From Compliance to Stewardship: Why Educators Must Ground the Teaching of AI Ethics in Spiritual Formation','Clark Cully'],
+   ['14:30-15:00','Cultivating Wise Practices','Meagan Soltwisch']]),
+   S('5B · Studying Students',R.wp,[
+   ['13:30-14:00','Student Voices on AI: How Students are Discerning Wisdom and Academic Responsibility in an Age of AI','Pauline Lu'],
+   ['14:00-14:30','The Student Voice on AI: How Christian College Newspapers Report and Reflect on Technological Emergence and Digital Discernment','David Lafe; Katie Good'],
+   ['14:30-15:00',"Belonging, Anxiety, and the Digital Neighbor: Cross-National Evidence on AI's Impact on Student Relational Wellbeing and Implications for Christian Learning Communities",'Vipin George; Queen Ramirez']])],
+  health:[S('',R.hk,[
+   ['13:30-13:55','Integrating Artificial Intelligence Into Nursing Simulation: Strategies, Lessons Learned, and Opportunities for Technology-Enabled Practice','Sherri Fannon; Christina Quick'],
+   ['13:55-14:20','Embedding structured EHR experiences within undergraduate nursing curricula','Elizabeth Byma'],
+   ['14:20-14:45','Foundation First: Optimizing the Core EHR to Climb the Healthcare Maturity Curve','Jonathan Bergman'],
+   ['14:45-15:00','Virtual Reality: Creation of an Operating Room Immersive Student Learning Experience','Sherri Fannon; Kelly Klerk']])],
+  stem:[S('Christian Vocation',R.bd,[
+   ['13:30-13:45','Some Wisdom for AI (virtual, no Q&A)','Andrew Basden'],
+   ['13:45-14:05','Building Value-Laden Technology With (and Using) AI','Ken Arnold'],
+   ['14:05-14:25','Abstraction, Agency, & Ambiguity','Sean Cannon'],
+   ['14:25-14:45','What is the Role of a Christian Working in AI for a Large Tech Company?','Al Erisman']])]}},
+ {t:'15:00-15:30',minor:'Break'},
+ {t:'15:30-17:00',ids:{arts:[4998000],biz:[4997996],church:[5384053],edu:[4997997,5403080],health:[],stem:[4997998]},cols:{
+  arts:[S('',R.arts,[
+   ['15:30-16:00','The Communal Loom: AI as Canvas for Participatory Worship Art','Andy Bass'],
+   ['16:00-16:30','Grief, Songwriting, and the Image of God in the Age of AI','Elly Sarkany'],
+   ['16:30-17:00','Creativity as Vocation: Imago Dei and Artificial Intelligence in Christian Worship','Herbert Tsang']])],
+  biz:[S('',R.biz,[
+   ['15:30-16:15','From Prompt to Practice: Governed AI for Talent Management in the Christian Workplace','Darryl Meekins'],
+   ['16:15-17:00','AI and human expression: A framework for personal financial planning','Nathan Weflen']])],
+  church:[S('6A & 6B · Roundtable','Willow',[]),],
+  edu:[S('6A · Wisdom',R.ge,[
+   ['15:30-16:00','The Sophistry of ChatGPT','Tae Sung'],
+   ['16:00-17:00','Panel: Attentive Belonging: Wisdom Formation, Attention, and Shalom in the Age of AI','Daniel McClain']]),
+   S('6B · Virtues',R.wp,[
+   ['15:30-16:00','Virtue, AI, and the Library: Collaborative Instruction for Intellectual Values in AI Literacy','Amanda Matthysse; Sam Ha; Sara Vander Bie'],
+   ['16:00-16:30','Hospitality in the Age of AI: Creating Belonging When Technology Threatens Connection','Rebecca Wakeman']])],
+  health:[],
+  stem:[S('Justice, Care & Community / Ethics: Conceptual',R.bd,[
+   ['15:30-15:50','SermonPress AI: Empowering Churches with Innovative AI Solutions','Paul Griffioen'],
+   ['15:50-16:10','A Values-Aware Digital Social Companion for Social Care: Design Science Research within the Salvation Army','Erik-Jan Smits; M.G. le Comte'],
+   ['16:10-16:30','AI as a Bridge: Supporting Human Dignity in Justice-Impacted Communities','Sandra Mosley'],
+   ['16:30-16:50','Programmer Responsibility for Artificial Agents: Maintaining a Meaningful Connection across Distance','Nick Breems'],
+   ['16:50-17:00','Revisiting AI Ethics: A Practice-Grounded Approach to Development, Application, and Policy Making','Christine Boshuijzen-van Burken; Eric Araújo']])]}},
+ {t:'17:00-19:00',minor:'Dinner break'},
+ {t:'19:00-20:00',full:{kind:'keynote',tag:'Keynote 3',id:4998003,title:'Waking From Our AI Dreams',who:'Andy Crouch, Praxis',room:'CFAC Auditorium'}}
+]},
+{id:'sat',label:'Saturday',date:'Oct 10',rows:[
+ {t:'08:00-09:00',full:{kind:'panel',tag:'Panel',id:4998010,title:'Faithful Ministry in the Age of AI',who:'Noel Snyder; Alison Gerber; David Kim; Todd Korpi',room:'CFAC Auditorium'}},
+ {t:'09:00-10:00',full:{kind:'keynote',tag:'Keynote 4',id:4998005,title:'Are we merely machines?',who:'Rosalind W. Picard, MIT Media Lab',room:'CFAC Auditorium'}},
+ {t:'10:00-10:30',minor:'Break'},
+ {t:'10:30-11:30',full:{kind:'panel',tag:'Panel',id:4998013,title:'Threads & Themes',who:'Rachel Hammond; David Smith; Noah Toly; Derek Schuurman; Ken Arnold',room:'CFAC Auditorium'}},
+ {t:'11:30-12:30',full:{kind:'keynote',tag:'Keynote 5',id:5227701,title:'The Future of AI and News',who:'Ryan Struyk, CNN',room:'CFAC Auditorium'}},
+ {t:'12:30-12:45',full:{kind:'panel',tag:'Closing',id:5228611,title:'Closing Remarks',who:'Derek Schuurman',room:'CFAC Auditorium'}}
+]}
+];
+const f=s=>{const [h,m]=s.split(':').map(Number);return (h%12||12)+':'+String(m).padStart(2,'0')};
+const rng=r=>{const [a,b]=r.split('-');const ap=+a.slice(0,2)>=12?'pm':'am',bp=+b.slice(0,2)>=12?'pm':'am';return f(a)+(ap!==bp?' '+ap:'')+'–'+f(b)+' '+bp};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let day='thu';const hidden=new Set();
+const out=document.getElementById('out');
+const link=(id,txt)=>`<a class="slink" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
+function cell(k,label,list,ids){
+  if(!list||!list.length) return `<div class="cell none" data-t="${k}"><div class="empty">No session</div></div>`;
+  return `<div class="cell" data-t="${k}" style="--c:var(--${k})">`+list.map((s,i)=>{const id=(ids||[])[i];const nm=NAMES[id]||s.n;return `<section class="card"><p class="tracklabel">${esc(label)}</p><h3 class="sname">${id?link(id,nm):esc(nm)}</h3><p class="room">${esc(s.r)}</p>${s.talks.length?'<ul>'+s.talks.map((t,j)=>{const tid=(TALKIDS[id]||[])[j];return `<li><span class="tt">${rng(t[0])}</span><span class="title">${tid?link(tid,t[1]):esc(t[1])}</span>${t[2]?`<span class="who">${esc(t[2])}</span>`:''}</li>`}).join('')+'</ul>':'<p class="note">Roundtable discussion with Calvin Institute of Christian Worship staff. No separate talks listed.</p>'}</section>`}).join('')+`</div>`;
+}
+function render(){
+  const d=D.find(x=>x.id===day);
+  const heads=`<div class="heads">${TR.map(([k,l])=>`<div data-t="${k}" style="--c:var(--${k})">${l}</div>`).join('')}</div>`;
+  let first=true;
+  out.innerHTML=d.rows.map(r=>{
+    if(r.minor) return `<div class="slot"><p class="time">${rng(r.t)} <small>${esc(r.minor)}</small></p></div>`;
+    if(r.full){const x=r.full;return `<div class="slot"><p class="time">${rng(r.t)}</p><div class="full ${x.kind}"><span class="tag">${esc(x.tag)}</span><span class="title">${x.id?link(x.id,x.title):esc(x.title)}</span><span class="who">${esc(x.who)}</span><span class="room">${esc(x.room)}</span></div></div>`}
+    const h=first?heads:'';first=false;
+    return `<div class="slot"><p class="time">${rng(r.t)} <small>Parallel sessions</small></p>${h}<div class="grid">${TR.map(([k,l])=>cell(k,l,r.cols[k],(r.ids||{})[k])).join('')}</div></div>`;
+  }).join('');
+  applyHidden();
+}
+function applyHidden(){
+  out.querySelectorAll('[data-t]').forEach(e=>{e.hidden=hidden.has(e.dataset.t)});
+  const g=document.querySelectorAll('.grid');
+  const vis=6-hidden.size;
+  document.querySelectorAll('.grid,.heads').forEach(e=>{e.style.gridTemplateColumns=window.matchMedia('(min-width:1100px)').matches&&vis>0&&vis<6?`repeat(${vis},minmax(0,1fr))`:''});
+}
+function buildControls(){
+  const dEl=document.getElementById('days');
+  dEl.innerHTML=D.map(x=>`<button type="button" data-d="${x.id}" aria-pressed="${x.id===day}">${x.label}, ${x.date}</button>`).join('');
+  dEl.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;dEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};
+  const c=document.getElementById('chips');
+  c.innerHTML=TR.map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="true" style="--c:var(--${k})">${l}</button>`).join('');
+  c.onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;if(hidden.has(k))hidden.delete(k);else hidden.add(k);b.setAttribute('aria-pressed',!hidden.has(k));applyHidden()};
+}
+window.addEventListener('resize',applyHidden);
+buildControls();render();
+</script>
+</body>
+</html>
