@@ -55,6 +55,7 @@ tr.blockhead .in b{font:600 13px var(--mono)}
 tr.blockhead .in span{color:var(--muted)}
 tr.h1 th,tr.h2 th{background:var(--surface);border-bottom:1px solid var(--line)}
 tr.h1 .trk{font:600 11.5px var(--sans);letter-spacing:.07em;text-transform:uppercase;padding:8px 8px 5px;border-top:3px solid var(--c);border-left:1px solid var(--line)}
+tr.h2 .ses .room{display:block;margin-top:3px;font:400 11px var(--sans);color:var(--muted)}
 tr.h2 .ses{font:600 12.5px/1.3 var(--serif);padding:2px 8px 8px;border-left:1px solid var(--line)}
 tr.h1 .time,tr.h2 .time{border-bottom:1px solid var(--line)}
 td.cell{border-left:1px solid var(--line);border-bottom:1px solid var(--soft);padding:6px;background:var(--surface)}
@@ -333,7 +334,7 @@ function unitsFor(r,bs,be){
       items.sort((x,y)=>x.a-y.a||x.b-y.b);
       const groups=[];
       for(const it of items){const g=groups[groups.length-1];if(g&&it.a<g.b){g.b=Math.max(g.b,it.b);g.items.push(it)}else groups.push({a:it.a,b:it.b,items:[it]})}
-      return {k,span,sid:id,name:NAMES[id]||s.n,groups};
+      return {k,span,sid:id,name:NAMES[id]||s.n,room:s.r,groups};
     };
     if(!ss.length) units.push({k,span:W[k],sid:null,name:'',groups:[]});
     else if(ss.length===1&&W[k]===2) units.push(mk(ss[0],ids[0],2));
@@ -371,7 +372,7 @@ function block(r){
     rowsHtml.push(h+'</tr>');
   }
   const trkHead=shown().map(k=>`<th class="trk" colspan="${W[k]}" style="--c:var(--${k})">${TRK[k]}</th>`).join('');
-  const sesHead=units.map(u=>`<th class="ses" colspan="${u.span}">${u.sid?link(u.sid,u.name):'<span class="note">No session</span>'}</th>`).join('');
+  const sesHead=units.map(u=>`<th class="ses" colspan="${u.span}">${u.sid?link(u.sid,u.name)+(u.room?`<span class="room">${esc(u.room)}</span>`:''):'<span class="note">No session</span>'}</th>`).join('');
   return `<tr class="blockhead"><th colspan="${NCOL+1}"><div class="in"><b>${spanAp(bs,be)}</b><span>Parallel sessions</span></div></th></tr>`+
     `<tr class="h1"><th class="time" rowspan="2">Time</th>${trkHead}</tr><tr class="h2">${sesHead}</tr>`+rowsHtml.join('');
 }
