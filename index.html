@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <meta name="description" content="Wisdom in the Age of AI conference (Calvin University, Oct 8-10, 2026): every talk in a timetable with time slots down the left and tracks across.">
 <title>Wisdom in the Age of AI Timetable</title>
 
@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}[hidden]{display:none!important}</style>
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 </head>
 <body>
 <style>
@@ -20,10 +21,7 @@
   --key:#1c2321; --keyink:#f5f6f4; --lw:176px; --tw:78px;
   --serif:"Source Serif 4",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#34403b; --soft:#232a27; --gap:#191f1d;
-  --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
-  --key:#e8ece9; --keyink:#141917; color-scheme:dark}}
+/* Light is the default. Dark applies only when the visitor picks it with the button (saved in this browser). */
 :root[data-theme="dark"]{
   --bg:#141917; --surface:#1d2321; --ink:#e8ece9; --muted:#9aa5a0; --line:#34403b; --soft:#232a27; --gap:#191f1d;
   --arts:#e07aa0; --biz:#6fb0d6; --church:#b497e6; --edu:#e0a857; --health:#6cc59a; --stem:#a3adb9;
@@ -33,6 +31,9 @@ body{background:var(--bg);color:var(--ink);font:13.5px/1.4 var(--sans);padding-i
 .wrap{max-width:1700px;margin:0 auto}
 h1{font:600 clamp(24px,3.2vw,34px)/1.1 var(--serif);margin:0;text-wrap:balance}
 .sub{color:var(--muted);margin:6px 0 0;max-width:68ch}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#theme{flex:none;display:inline-flex;align-items:center;gap:7px;padding:6px 11px}
+#theme svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:18px 0}
 .row{display:flex;flex-wrap:wrap;gap:6px}
 button{font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -80,7 +81,10 @@ tr.minor td{background:var(--gap);color:var(--muted);font-size:12.5px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 <div class="wrap">
-<h1>Wisdom in the Age of AI Timetable</h1>
+<div class="top">
+  <h1>Wisdom in the Age of AI Timetable</h1>
+  <button type="button" id="theme"><svg viewBox="0 0 24 24" aria-hidden="true"></svg><span></span></button>
+</div>
 <p class="sub">Time runs down the left, tracks run across. Each talk sits in the rows for the minutes it runs, so you can see what overlaps. Hatched cells are gaps with no talk listed. Titles open the talk's Whova page.</p>
 <div class="controls">
   <div class="row" id="days" role="group" aria-label="Day"></div>
@@ -394,6 +398,22 @@ function chips(){
     if(hidden.has(k))hidden.delete(k);else if(shown().length>1)hidden.add(k);
     c.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',!hidden.has(x.dataset.k)));renderDay()};
 }
+function themeBtn(){
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  const b=document.getElementById('theme');
+  b.querySelector('span').textContent=dark?'Light mode':'Dark mode';
+  b.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
+  b.querySelector('svg').innerHTML=dark
+    ?'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+    :'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+}
+document.getElementById('theme').onclick=()=>{
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  if(dark)document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme','dark');
+  try{localStorage.setItem('theme',dark?'light':'dark')}catch(e){}
+  themeBtn();
+};
+themeBtn();
 controls();chips();renderDay();
 </script>
 </body>
