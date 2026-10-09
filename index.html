@@ -322,7 +322,7 @@ const ampm=m=>m>=720?'pm':'am';
 const span=(a,b)=>clock(a)+'–'+clock(b);
 const spanAp=(a,b)=>clock(a)+(ampm(a)!==ampm(b)?' '+ampm(a):'')+'–'+clock(b)+' '+ampm(b);
 const link=(id,txt,c)=>`<a class="l" href="${href(id)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
-let day='thu';
+let day='fri';
 
 function unitsFor(r,bs,be){
   const units=[];
